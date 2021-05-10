@@ -102,7 +102,7 @@
         <li><a class="modal-trigger" href="#modal_reload_scripts">Reload scripts</a></li>
         <li><a class="modal-trigger" href="#modal_reload_groups">Reload groups</a></li>
         <li><a class="modal-trigger" href="#modal_reload_core">Reload core</a></li>
-        <li><a class="modal-trigger" href="#modal_restart">Restart HASS</a></li>
+        <li><a class="modal-trigger" href="#modal_restart">Restart Block</a></li>
         <li class="divider"></li>
         <li><a class="modal-trigger" href="#modal_exec_command">Execute shell command</a></li>
         <li><a onclick="toggle_hass_panels()">Toggle HASS panel</a></li>
@@ -123,7 +123,7 @@
         <li><a class="modal-trigger" href="#modal_reload_scripts">Reload scripts</a></li>
         <li><a class="modal-trigger" href="#modal_reload_groups">Reload groups</a></li>
         <li><a class="modal-trigger" href="#modal_reload_core">Reload core</a></li>
-        <li><a class="modal-trigger" href="#modal_restart">Restart HASS</a></li>
+        <li><a class="modal-trigger" href="#modal_restart">Restart Block</a></li>
         <li class="divider"></li>
         <li><a class="modal-trigger" href="#modal_exec_command">Execute shell command</a></li>
         <li><a onclick="toggle_hass_panels()">Toggle HASS panel</a></li>
@@ -850,7 +850,7 @@
     <div id="modal_restart" class="modal">
         <div class="modal-content">
             <h4 class="grey-text text-darken-3">Restart<i class="mdi mdi-restart right grey-text text-darken-3" style="font-size: 2rem;"></i></h4>
-            <p>Do you really want to restart Home Assistant?</p>
+            <p>Do you really want to restart this Cofybox block?</p>
         </div>
         <div class="modal-footer">
           <a class=" modal-action modal-close waves-effect waves-red btn-flat light-blue-text">No</a>
@@ -2294,7 +2294,7 @@
     function restart() {
         $.get("api/restart", function (resp) {
             if (resp.length == 0) {
-                var $toastContent = $("<div><pre>Restarting HASS</pre></div>");
+                var $toastContent = $("<div><pre>Restarting block</pre></div>");
                 Materialize.toast($toastContent, 2000);
             }
             else {

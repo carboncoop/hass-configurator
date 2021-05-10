@@ -646,28 +646,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             return
         elif req.path.endswith('/api/restart'):
             LOG.info("/api/restart")
-            self.send_header('Content-type', 'text/json')
-            self.end_headers()
-            res = {"restart": False}
-            try:
-                headers = {
-                    "Content-Type": "application/json"
-                }
-                if HASS_API_PASSWORD:
-                    if is_jwt(HASS_API_PASSWORD):
-                        headers["Authorization"] = "Bearer %s" % HASS_API_PASSWORD
-                    else:
-                        headers["x-ha-access"] = HASS_API_PASSWORD
-                req = urllib.request.Request(
-                    "%sservices/homeassistant/restart" % HASS_API,
-                    headers=headers, method='POST')
-                with urllib.request.urlopen(req) as response:
-                    res = json.loads(response.read().decode('utf-8'))
-                    LOG.debug(res)
-            except Exception as err:
-                LOG.warning(err)
-                res['restart'] = str(err)
-            self.wfile.write(bytes(json.dumps(res), "utf8"))
+            import os
+            os.system("reboot")
             return
         elif req.path.endswith('/api/check_config'):
             LOG.info("/api/check_config")
