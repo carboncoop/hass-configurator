@@ -647,7 +647,14 @@ class RequestHandler(BaseHTTPRequestHandler):
         elif req.path.endswith('/api/restart'):
             LOG.info("/api/restart")
 
-            os.system("reboot")
+            BALENA_URL = os.environ['BALENA_SUPERVISOR_ADDRESS']
+            headers = {
+                "Content-Type": "application/json"
+            }
+            req = urllib.request.Request(BALENA_URL, headers=headers, method='POST')
+            with urllib.request.urlopen(req) as response:
+                print(json.loads(response.read().decode('utf-8')))
+
             return
         elif req.path.endswith('/api/check_config'):
             LOG.info("/api/check_config")
