@@ -651,7 +651,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             headers = {
                 "Content-Type": "application/json"
             }
-            req = urllib.request.Request(BALENA_URL, headers=headers, method='POST')
+            req = urllib.request.Request(BALENA_URL + "/ping", headers=headers, method='POST')
             with urllib.request.urlopen(req) as response:
                 print(json.loads(response.read().decode('utf-8')))
 
